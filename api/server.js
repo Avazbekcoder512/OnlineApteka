@@ -3,12 +3,15 @@ import { PORT } from './config/config.js'
 const app = express()
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
+import { appRouter } from './router/router.js'
 
 
 app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }))
+
+app.use('/', appRouter)
 
 app.use((error, req, res, next) => {
     console.log(error);
