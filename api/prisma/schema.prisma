@@ -21,7 +21,18 @@ enum Role {
   supplier
 }
 
-model Employees {
+model Admin {
+  id        Int        @id @default(autoincrement())
+  name      String     @db.VarChar(255)
+  phone     String     @unique @db.VarChar(20)
+  password  String     @db.Text
+  role      Role
+  createdAt DateTime   @default(now()) @db.Timestamp(0)
+  updatedAt DateTime   @updatedAt @db.Timestamp(0)
+  pharmacy  Pharmacy[]
+}
+
+model Supplier {
   id        Int        @id @default(autoincrement())
   name      String     @db.VarChar(255)
   phone     String     @unique @db.VarChar(20)
@@ -40,8 +51,10 @@ model Pharmacy {
   longitude   Float
   destination String     @db.Text
   phone       String     @unique @db.VarChar(20)
-  employeeId  Int
-  employee    Employees  @relation(fields: [employeeId], references: [id])
+  adminId     Int
+  admin       Admin      @relation(fields: [adminId], references: [id])
+  supplierId  Int
+  supplier    Supplier   @relation(fields: [supplierId], references: [id])
   medicine    Medicine[]
 }
 

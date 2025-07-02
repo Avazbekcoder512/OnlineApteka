@@ -1,4 +1,4 @@
-import Joi, { string } from 'joi'
+import Joi from 'joi'
 
 const adminCreateSchema = Joi.object({
     name: Joi.string().alphanum().min(3).max(255).required().messages({
@@ -28,4 +28,28 @@ const adminCreateSchema = Joi.object({
     })
 })
 
-export default adminCreateSchema
+const adminUpdateSchema = Joi.object({
+    name: Joi.string().alphanum().min(3).max(255).messages({
+        'string.base': 'Ism faqat matn boʻlishi kerak',
+        'string.alphanum': 'Ism faqat harf va raqamlardan iborat bo‘lishi kerak',
+        'string.min': 'Ism kamida {#limit} ta belgidan iborat boʻlishi kerak!',
+        'string.max': 'Ism eng koʻpi bilan {#limit} ta belgidan iborat boʻlishi kerak!',
+    }),
+    phone: Joi.string().alphanum().trim().min(12).max(13).messages({
+        'string.base': 'Telefon raqam faqat matn boʻlishi kerak',
+        'string.alphanum': 'Telefon raqam faqat harf va raqamlardan iborat bo‘lishi kerak',
+        'string.min': 'Telefon raqam kamida {#limit} ta belgidan iborat boʻlishi kerak!',
+        'string.max': 'Telefon raqam eng koʻpi bilan {#limit} ta belgidan iborat boʻlishi kerak!',
+    }),
+    password: Joi.string().min(8).max(20).trim().messages({
+        'string.base': 'Parol faqat matn boʻlishi kerak',
+        'string.min': 'Parol kamida {#limit} ta belgidan iborat boʻlishi kerak!',
+        'string.max': 'Parol eng koʻpi bilan {#limit} ta belgidan iborat boʻlishi kerak!',
+    }),
+    role: Joi.string().valid('admin', 'superAdmin', 'supplier').trim().messages({
+        'string.base': 'Role faqat matn boʻlishi kerak',
+        'any.only': 'Role faqat admin, superAdmin yoki supplier bo‘lishi mumkin',
+    })
+})
+
+export { adminCreateSchema, adminUpdateSchema}
