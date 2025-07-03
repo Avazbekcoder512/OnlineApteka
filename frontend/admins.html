@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
- <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>
+        Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com
+    </title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png" />
     <!-- Custom Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 
 <body>
-
     <div id="preloader">
         <div class="loader">
             <svg class="circular" viewBox="25 25 50 50">
@@ -24,44 +25,41 @@
             </svg>
         </div>
     </div>
-  
-    <div id="main-wrapper">
 
+    <div id="main-wrapper">
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="index.html">
-                    <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
-                    <span class="logo-compact"><img src="images/logo-compact.png" alt=""></span>
+                    <b class="logo-abbr"><img src="images/logo.png" alt="" /> </b>
+                    <span class="logo-compact"><img src="images/logo-compact.png" alt="" /></span>
                     <span class="brand-title">
-                        <img src="images/logo-text.png" alt="">
+                        <img src="images/logo-text.png" alt="" />
                     </span>
                 </a>
             </div>
         </div>
 
-        <div class="header">    
+        <div class="header">
             <div class="header-content clearfix">
-                
                 <div class="nav-control">
                     <div class="hamburger">
                         <span class="toggle-icon"><i class="icon-menu"></i></span>
                     </div>
                 </div>
-               
+
                 <div class="header-right">
                     <ul class="clearfix">
-                        
-                        
                         <li class="icons dropdown">
-                            <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
+                            <div class="admin-img c-pointer position-relative" data-toggle="dropdown">
                                 <span class="activity active"></span>
-                                <img src="images/user/1.png" height="40" width="40" alt="">
+                                <img src="images/user/1.png" height="40" width="40" alt="" />
                             </div>
-                            <div class="drop-down dropdown-profile   dropdown-menu">
+                            <div class="drop-down dropdown-profile dropdown-menu">
                                 <div class="dropdown-content-body">
-                                      <ul>
-                                        
-                                        <li><a href="page-login.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                    <ul>
+                                        <li>
+                                            <a href="page-login.html"><i class="icon-key"></i> <span>Logout</span></a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -71,171 +69,216 @@
             </div>
         </div>
 
-        <div class="nk-sidebar">           
+        <div class="nk-sidebar">
             <div class="nk-nav-scroll">
                 <ul class="metismenu" id="menu">
                     <ul aria-expanded="false">
-                                <a href="admins.html">
-                                    <i class="fa-solid fa-users-gear" style="padding-right: 5px;"></i>Xodimlar</a>
-                        </ul>
+                        <a href="admins.html">
+                            <i class="fa-solid fa-admins-gear" style="padding-right: 5px"></i>Xodimlar</a>
+                    </ul>
                     <ul aria-expanded="false">
-                                <a href="drugs.html">
-                                    <i class="fa-solid fa-pills" style="padding-right: 5px;"></i>Dorilar</a>
-                        </ul>
+                        <a href="drugs.html">
+                            <i class="fa-solid fa-pills" style="padding-right: 5px"></i>Dorilar</a>
+                    </ul>
                     <ul aria-expanded="false">
-                                <a href="pharmaces.html">
-                                    <i class="fa-solid fa-hospital" style="padding-right: 5px;"></i>Dorixonalar</a>
-                        </ul>
+                        <a href="pharmaces.html">
+                            <i class="fa-solid fa-hospital" style="padding-right: 5px"></i>Dorixonalar</a>
+                    </ul>
                 </ul>
             </div>
         </div>
         <div class="content-body">
-
             <div class="row page-titles mx-0">
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
+                        <li class="breadcrumb-item">
+                            <a href="javascript:void(0)">Dashboard</a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <a href="javascript:void(0)">Home</a>
+                        </li>
                     </ol>
                 </div>
             </div>
-            <!-- row -->
 
             <div class="container-fluid">
-                 <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Table Stripped</h4>
-                                <div class="table-responsive"> 
-                                    <table class="table table-bordered table-striped verticle-middle">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Id</th>
-                                                <th scope="col">Ism</th>
-                                                <th scope="col">Telefon</th>
-                                                <th scope="col">Rol</th>
-                                                <th scope="col">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Adminlar</h4>
+                            <button type="button" class="btn btn-primary mb-3" data-toggle="modal"
+                                data-target="#createAdminModal">
+                                Yangi Admin Qo'shish
+                            </button>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped verticle-middle">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Ism</th>
+                                            <th scope="col">Telefon</th>
+                                            <th scope="col">Rol</th>
+                                            <th scope="col">Amallar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="adminList">
+                                        <tr>
+                                                <td>1</td>
                                                 <td>Air Conditioner</td>
+                                                <td>+998901234567</td>
+                                                <td><span class="label gradient-1 btn-rounded">kuryer</span>
+                                                </td>
                                                 <td>
-                                                    <div class="progress" style="height: 10px">
-                                                        <div class="progress-bar gradient-1" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
-                                                        </div>
-                                                    </div> 
-                                                </td>
-                                                <td>Apr 20,2018</td>
-                                                <td><span class="label gradient-1 btn-rounded">70%</span>
-                                                </td>
-                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                                                    <span>
+                                                        <a href="#" data-toggle="tooltip" data-placement="top" title="Edit" onclick="openModal({id: 1, name: 'Usercha', phone: '+998909876543', role: 'admin'})">
+                                                            <i class="fa-solid fa-pen-to-square"></i></a>
+                                                            <a href="#" data-toggle="tooltip" data-placement="top" title="Close" onclick="deleteAdmin(1)">
+                                                                <i class="fa-solid fa-trash-can"></i>
+                                                        </a></span>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <!-- <tr>
+                                                <td>2</td>
                                                 <td>Textiles</td>
-                                                <td>
-                                                    <div class="progress" style="height: 10px">
-                                                        <div class="progress-bar gradient-2" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
-                                                        </div>
-                                                    </div> 
+                                                <td>+998901234568</td>
+                                                <td><span class="label gradient-2 btn-rounded">superadmin</span>
                                                 </td>
-                                                <td>May 27,2018</td>
-                                                <td><span class="label gradient-2 btn-rounded">70%</span>
-                                                </td>
-                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa-solid fa-trash-can"></i></a></span>
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <td>3</td>
                                                 <td>Milk Powder</td>
-                                                <td>
-                                                    <div class="progress" style="height: 10px">
-                                                        <div class="progress-bar gradient-3" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
-                                                        </div>
-                                                    </div> 
-                                                </td>
-                                                <td>May 18,2018</td>
-                                                <td><span class="label gradient-3 btn-rounded">70%</span>
-                                                </td>
-                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                                                
+                                                <td>+998901234569</td>
+                                                <td><span class="label gradient-5 btn-rounded">admin</span>
+                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa-solid fa-trash-can"></i></a></span>
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <td>4</td>
                                                 <td>Vehicles</td>
-                                                <td>
-                                                    <div class="progress" style="height: 10px">
-                                                        <div class="progress-bar gradient-4" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
-                                                        </div>
-                                                    </div> 
-                                                </td>
-                                                <td>Mar 27,2018</td>
-                                                <td><span class="label gradient-4 btn-rounded">70%</span>
-                                                </td>
-                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                                               
+                                                <td>+998901234570</td>
+                                                <td><span class="label gradient-5 btn-rounded">admin</span>
+                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa-solid fa-trash-can"></i></a></span>
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <td>5</td>
                                                 <td>Boats</td>
-                                                <td>
-                                                    <div class="progress" style="height: 10px">
-                                                        <div class="progress-bar gradient-9" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
-                                                        </div>
-                                                    </div> 
-                                                </td>
-                                                <td>Jun 28,2018</td>
-                                                <td><span class="label gradient-9 btn-rounded">70%</span>
-                                                </td>
-                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                                                <td>+998901234571</td>
+                                                <td><span class="label gradient-5 btn-rounded">admin</span>
+                                               
+                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa-solid fa-trash-can"></i></a></span>
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <td>6</td>
                                                 <td>Boats</td>
-                                                <td>
-                                                    <div class="progress" style="height: 10px">
-                                                        <div class="progress-bar gradient-2" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
-                                                        </div>
-                                                    </div> 
+                                               
+                                                <td>+998901234572</td>
+                                                <td><span class="label gradient-5 btn-rounded">admin</span>
+                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa-solid fa-trash-can"></i></a></span>
                                                 </td>
-                                                <td>Aug 20,2018</td>
-                                                <td><span class="label gradient-2 btn-rounded">70%</span>
-                                                </td>
-                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa fa-close color-danger"></i></a></span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                            </tr> -->
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
-            <!-- #/ container -->
         </div>
+
+        <!-- Create modal -->
+        <div class="modal fade" id="createAdminModal" tabindex="-1" role="dialog"
+            aria-labelledby="createAdminModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form id="createAdminForm" class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createAdminModalLabel">
+                            Yangi Admin Qo'shish
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Yopish">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Ism</label>
+                            <input type="text" class="form-control" id="adminName" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Telefon</label>
+                            <input type="text" class="form-control" id="adminPhone" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Rol</label>
+                            <select class="form-control" id="adminRole">
+                                <option value="kuryer">kuryer</option>
+                                <option value="superadmin">superadmin</option>
+                                <option value="admin">admin</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Parol</label>
+                            <input type="password" class="form-control" id="adminPassword" required />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            Bekor qilish
+                        </button>
+                        <button type="submit" class="btn btn-success">Qo'shish</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Edit modal -->
+         <div id="editAdminModal" class="modal" style="display: none;">
+            <div class="modal-content" style="max-width: 500px; margin: auto; margin-top: 50px; padding: 20px; border-radius: 8px; background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)">
+               <span onclick="closeModal()" style="float: right; cursor: pointer;">&times;</span>
+                <h4>Admin tahrirlash</h4>
+                <form id="editAdminForm">
+                    <input type="hidden" id="editAdminId" />
+                    <div class="form-group">
+                        <label>Ism</label>
+                        <input type="text" id="editAdminName" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Telefon</label>
+                        <input type="text" id="editAdminPhone" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Rol</label>
+                        <select id="editAdminRole" class="form-control" required>
+                            <option value="kuryer">kuryer</option>
+                            <option value="superadmin">superadmin</option>
+                            <option value="admin">admin</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Saqlash</button>
+                </form>
+            </div>
+         </div>
+
 
         <div class="footer">
             <div class="copyright">
-                <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+                <p>
+                    Copyright &copy; Designed & Developed by <a href="">Quixlab</a> 2018
+                </p>
             </div>
         </div>
-        <!--**********************************
-            Footer end
-        ***********************************-->
     </div>
-    <!--**********************************
-        Main wrapper end
-    ***********************************-->
-
-    <!--**********************************
-        Scripts
-    ***********************************-->
     <script src="plugins/common/common.min.js"></script>
     <script src="js/custom.min.js"></script>
     <script src="js/settings.js"></script>
     <script src="js/gleek.js"></script>
     <script src="js/styleSwitcher.js"></script>
-
+    <script src="fetch/admin.js"></script>
 </body>
 
-
-<!-- Mirrored from themewagon.github.io/quixlab/layout-blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 01 Jul 2025 04:42:57 GMT -->
 </html>
