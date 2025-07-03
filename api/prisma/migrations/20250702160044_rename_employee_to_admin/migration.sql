@@ -1,3 +1,4 @@
+
 /*
   Warnings:
 
@@ -55,3 +56,4 @@ ALTER TABLE "Pharmacy" ADD CONSTRAINT "Pharmacy_adminId_fkey" FOREIGN KEY ("admi
 
 -- AddForeignKey
 ALTER TABLE "Pharmacy" ADD CONSTRAINT "Pharmacy_supplierId_fkey" FOREIGN KEY ("supplierId") REFERENCES "Supplier"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
