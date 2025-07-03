@@ -31,12 +31,12 @@ const adminCreate = async (req, res) => {
 
         const hashPassword = await bcrypt.hash(value.password, 10)
 
-        await prisma.employees.create({
+        await prisma.admin.create({
             data: {
                 name: value.name,
                 phone: value.phone,
                 password: hashPassword,
-                role: value.phone
+                role: value.role
             }
         })
 
