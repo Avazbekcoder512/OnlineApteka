@@ -918,7 +918,8 @@ pre {
     max-width: 41.66667%; }
   .col-lg-6 {
     flex: 0 0 50%;
-    max-width: 50%; }
+    /* max-width: 50%; */
+   }
   .col-lg-7 {
     flex: 0 0 58.33333%;
     max-width: 58.33333%; }
@@ -9542,14 +9543,21 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     font-size: 15px; }
   .login-input .form-group .form-control {
     background: transparent;
-    border: 0;
-    border-radius: 0;
+    border: none;
+    /* border-radius: 0; */
     border-bottom: 1px solid #f5f5f5;
-    padding-left: 0;
-    color: #7A88A1; }
+    /* padding-left: 0; */
+    /* color: #7A88A1; */
+    outline: none; 
+    transition: all 0.3s ease;
+    padding: 8px;
+    }
 
-.form-control:focus {
-  box-shadow: none; }
+.login-input .form-group .form-control:focus {
+  /* box-shadow: none;  */
+  border: 1px solid #9096a2;
+  border-radius: 4px;
+}
 
 .error-bg {
   background: #AFB4C5; }

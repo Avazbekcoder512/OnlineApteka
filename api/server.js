@@ -1,3 +1,4 @@
+
 import express from 'express'
 import { PORT } from './config/config.js'
 const app = express()
@@ -25,4 +26,5 @@ app.use((error, req, res, next) => {
 const port = PORT || 3000
 app.listen(port, () => {
     console.log(`Server ${port}-portda ishga tushdi...`);
+
 })

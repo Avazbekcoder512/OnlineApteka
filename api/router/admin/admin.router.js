@@ -1,3 +1,4 @@
+
 import { Router } from 'express'
 import { adminCreate, deleteAdmin, getAllAdmins, getOneAdmin, updateAdmin, updateAdminPassword } from '../../controller/admin.controller.js'
 
