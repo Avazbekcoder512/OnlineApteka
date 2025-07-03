@@ -1,3 +1,4 @@
+
 import express from 'express'
 import { PORT } from './config/config.js'
 const app = express()
@@ -11,7 +12,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }))
 
-app.use('/', appRouter)
+appRouter(app)
 
 app.use((error, req, res, next) => {
     console.log(error);
@@ -25,4 +26,5 @@ app.use((error, req, res, next) => {
 const port = PORT || 3000
 app.listen(port, () => {
     console.log(`Server ${port}-portda ishga tushdi...`);
+
 })

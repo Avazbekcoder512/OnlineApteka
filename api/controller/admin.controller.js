@@ -117,7 +117,7 @@ const updateAdmin = async (req, res) => {
             })
         }
 
-        const { error, value } = adminUpdateSchema.validate(req.body)
+        const { error, value } = adminUpdateSchema.validate(req.body, { abortEarly: false })
         if (error) {
             return res.status(400).send({
                 success: false,
@@ -170,7 +170,7 @@ const updateAdminPassword = async (req, res) => {
             })
         }
 
-        const { error, value } = updatePasswordSchema.validate(req.body)
+        const { error, value } = updatePasswordSchema.validate(req.body, { abortEarly: false })
         if (error) {
             return res.status(400).send({
                 success: false,
