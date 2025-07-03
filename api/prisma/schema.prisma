@@ -47,6 +47,7 @@ model Pharmacy {
   id          Int        @id @default(autoincrement())
   name        String     @db.Text
   address     String     @db.Text
+  locationUrl String
   latitude    Float
   longitude   Float
   destination String     @db.Text

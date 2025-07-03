@@ -2,6 +2,7 @@ import { IS_PRODUCTION, JWT_KEY } from "../config/config.js";
 import loginSchema from "../validator/loginValidate.js";
 import prisma from '../prisma/setup.js'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 
 const generateToken = (id, role) => {
