@@ -1,6 +1,6 @@
 import Joi from 'joi'
 
-const adminCreateSchema = Joi.object({
+const createSupplierSchema = Joi.object({
     name: Joi.string().alphanum().min(3).max(255).required().messages({
         'string.base': 'Ism faqat matn boʻlishi kerak',
         'string.alphanum': 'Ism faqat harf va raqamlardan iborat bo‘lishi kerak',
@@ -21,14 +21,14 @@ const adminCreateSchema = Joi.object({
         'string.max': 'Parol eng koʻpi bilan {#limit} ta belgidan iborat boʻlishi kerak!',
         'any.required': 'Parol majburiy maydon!'
     }),
-    role: Joi.string().valid('admin', 'superAdmin').trim().required().messages({
+    role: Joi.string().valid('supplier').trim().required().messages({
         'string.base': 'Role faqat matn boʻlishi kerak',
-        'any.only': 'Role faqat admin yoki superAdmin bo‘lishi mumkin',
+        'any.only': 'Role faqat supplier bo‘lishi mumkin',
         'any.required': 'Role majburiy maydon!'
     })
 })
 
-const adminUpdateSchema = Joi.object({
+const updateSupplierSchema = Joi.object({
     name: Joi.string().alphanum().min(3).max(255).messages({
         'string.base': 'Ism faqat matn boʻlishi kerak',
         'string.alphanum': 'Ism faqat harf va raqamlardan iborat bo‘lishi kerak',
@@ -47,4 +47,4 @@ const adminUpdateSchema = Joi.object({
     })
 })
 
-export { adminCreateSchema, adminUpdateSchema}
+export { createSupplierSchema, updateSupplierSchema }

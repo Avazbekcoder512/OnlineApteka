@@ -11,7 +11,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }))
 
-app.use('/', appRouter)
+appRouter(app)
 
 app.use((error, req, res, next) => {
     console.log(error);
