@@ -9,11 +9,12 @@ document.getElementById('login-form').addEventListener('submit', function(event)
         password: password
     };
     
-    fetch('http://localhost:7777/api/login', {
+    fetch('http://localhost:7777/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
+        // credentials: 'include',
         body: JSON.stringify(data)
     })
     .then(response => {
@@ -24,7 +25,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     })
     .then(data => {
        console.log('Muvaffaqiyatli kirish:', data);
-        document.cookie = `token=${data.token}; path=/; max-age=86400; secure;`;
+       localStorage.setItem('token', data.token);
         window.location.href = "/admin"
        alert("Muvaffaqiyatli kirish!")
     })

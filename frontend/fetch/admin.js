@@ -1,7 +1,7 @@
 // Admins
 document.addEventListener('DOMContentLoaded', () => {
     const tableBody = document.querySelector("table tbody");
-    const token = getCookie("token");
+    const token = localStorage.getItem('token');
 
     fetch('http://localhost:7777/api/admins', {
         method: 'GET',
