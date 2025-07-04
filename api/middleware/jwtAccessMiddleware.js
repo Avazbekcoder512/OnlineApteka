@@ -3,7 +3,16 @@ import { JWT_KEY } from '../config/config.js'
 
 const jwtAccessMiddleware = function (req, res, next) {
     try {
-        const token = req.cookies.token
+        const authHeader = req.headers['authorization'];
+
+        if (!authHeader) {
+            return res.status(404).send({
+                error: 'Iltimos qayta kirish qiling!',
+            });
+        }
+
+        const token = authHeader.split(' ')[1];
+
 
         if (!token) {
             return res.status(401).send({
