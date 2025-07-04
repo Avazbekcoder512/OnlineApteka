@@ -134,29 +134,53 @@ document.getElementById("editEmployeForm").addEventListener("submit", function(e
 
 // Delete employe
 function deleteEmploye(id) {
-    if (confirm('Rostdan ham bu xodimni o\'chirmoqchimisiz?')) {
-        const token = getCookie("token");
+    Swal.fire({
+        title: 'Ishonchingiz komilmi?',
+        text: "Bu xodim o‘chiriladi!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Ha, o‘chir!',
+        cancelButtonText: 'Bekor qilish'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const token = getCookie("token");
 
-        fetch(`http://localhost:7777/api/employees/${id}`, {
-            method: 'DELETE',
-            headers: {
-                "Content-Type": "application/json",
-                'Authorization': `Bearer ${token}`
-            }
-        })
-        .then(res => {
-            if (responseok) {
-                alert('employe o\'chirildi!');
-                location.reload();
-            } else {
-                alert('Xatolik: xodim o\'chirilmadi!')
-            }
-        })
-        .catch(error => {
-            console.error('Xatolik:', error);
-            alert('Xodim o\'chirishda xatolik yuz berdi.');
-        });
-    }
+            fetch(`http://localhost:7777/api/employees/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+            .then(res => {
+                if (res.ok) {
+                    Swal.fire(
+                        'O‘chirildi!',
+                        'Xodim muvaffaqiyatli o‘chirildi.',
+                        'success'
+                    ).then(() => {
+                        location.reload(); // Ro‘yxatni yangilash
+                    });
+                } else {
+                    Swal.fire(
+                        'Xatolik!',
+                        'Xodimni o‘chirishda muammo yuz berdi.',
+                        'error'
+                    );
+                }
+            })
+            .catch(error => {
+                console.error('Xatolik:', error);
+                Swal.fire(
+                    'Xatolik!',
+                    'Tarmoqda xatolik yuz berdi.',
+                    'error'
+                );
+            });
+        }
+    });
 }
 
 // logout
