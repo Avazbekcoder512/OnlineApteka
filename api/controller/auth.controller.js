@@ -52,17 +52,11 @@ const login = async (req, res) => {
         const role = user.role
         const token = generateToken(userId, role)
 
-        res.cookie('token', token, {
-            httpOnly: true,
-            secure: IS_PRODUCTION,
-            sameSite: "Strict",
-            maxAge: 24 * 60 * 60 * 1000
-        })
-
         return res.status(200).send({
             success: true,
             error: false,
-            message: 'Kirish muvaffaqiyatli amalga oshirildi!'
+            message: 'Kirish muvaffaqiyatli amalga oshirildi!',
+            token
         })
 
     } catch (error) {
