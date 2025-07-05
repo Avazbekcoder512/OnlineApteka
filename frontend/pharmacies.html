@@ -6,9 +6,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>
-      Quixlab - Bootstrap employe Dashboard Template by Themefisher.com
-    </title>
+    <title>Quixlab - Bootstrap Dashboard Template by Themefisher.com</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png" />
     <!-- Custom Stylesheet -->
@@ -64,7 +62,7 @@
             <ul class="clearfix">
               <li class="icons dropdown">
                 <div
-                  class="admin-img c-pointer position-relative"
+                  class="Pharmacy-img c-pointer position-relative"
                   data-toggle="dropdown"
                 >
                   <span class="activity active"></span>
@@ -125,14 +123,14 @@
                 <div
                   class="d-flex justify-content-between align-items-center mb-3"
                 >
-                  <h4 class="card-title">Xodimlar</h4>
+                  <h4 class="card-title">Dorixonalar</h4>
                   <button
                     type="button"
                     class="btn btn-primary mb-3"
                     data-toggle="modal"
-                    data-target="#createEmployeModal"
+                    data-target="#createPharmacyModal"
                   >
-                    Yangi Xodim Qo'shish
+                    Yangi Dorixona Qo'shish
                   </button>
                 </div>
                 <div class="table-responsive">
@@ -142,20 +140,20 @@
                     <thead>
                       <tr>
                         <th scope="col">Id</th>
-                        <th scope="col">Ism</th>
+                        <th scope="col">Nomi</th>
+                        <th scope="col">Manzil</th>
                         <th scope="col">Telefon</th>
-                        <th scope="col">Rol</th>
                         <th scope="col">Amallar</th>
                       </tr>
                     </thead>
-                    <tbody id="employeList">
-                      <tr>
+                    <tbody id="pharmacyList">
+                      <!-- <tr>
                         <td>1</td>
                         <td>Air Conditioner</td>
                         <td>+998901234567</td>
                         <td>
                           <span class="label gradient-1 btn-rounded"
-                            >kuryer</span
+                            >Pharmacy</span
                           >
                         </td>
                         <td>
@@ -165,7 +163,7 @@
                               data-toggle="tooltip"
                               data-placement="top"
                               title="Edit"
-                              onclick="openModal({id: 1, name: 'Usercha', phone: '+998909876543', role: 'employe'})"
+                              onclick="openModal({id: 1, name: 'Usercha', phone: '+998909876543', role: 'Pharmacy'})"
                             >
                               <i class="fa-solid fa-pen-to-square"></i
                             ></a>
@@ -174,150 +172,18 @@
                               data-toggle="tooltip"
                               data-placement="top"
                               title="Close"
-                              onclick="deleteEmploye(1)"
+                              onclick="deletePharmacy(1)"
                             >
                               <i class="fa-solid fa-trash-can"></i> </a
                           ></span>
                         </td>
-                      </tr>
+                      </tr> -->
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- Create modal -->
-      <div
-        class="modal fade"
-        id="createEmployeModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="createEmployeModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog" role="document">
-          <form id="createEmployeForm" class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="createEmployeModalLabel">
-                Yangi Xodim Qo'shish
-              </h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Yopish"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="form-group">
-                <label>Ism</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="employeName"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label>Telefon</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="employePhone"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label>Rol</label>
-                <select class="form-control" id="employeRole">
-                  <option value="kuryer">kuryer</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>Parol</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="employePassword"
-                  required
-                />
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Bekor qilish
-              </button>
-              <button type="submit" class="btn btn-success">Qo'shish</button>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      <!-- Edit modal -->
-      <div id="editEployeModal" class="modal" style="display: none">
-        <div
-          class="modal-content"
-          style="
-            max-width: 500px;
-            margin: auto;
-            margin-top: 50px;
-            padding: 20px;
-            border-radius: 8px;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-          "
-        >
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Yopish"
-          >
-            <span
-              onclick="closeModal()"
-              style="float: right; cursor: pointer"
-              aria-hidden="true"
-              >&times;</span
-            >
-          </button>
-          <h4>Xodim tahrirlash</h4>
-          <form id="editemployeForm">
-            <input type="hidden" id="editEmployeId" />
-            <div class="form-group">
-              <label>Ism</label>
-              <input
-                type="text"
-                id="editEmployeName"
-                class="form-control"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label>Telefon</label>
-              <input
-                type="text"
-                id="editEmployePhone"
-                class="form-control"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label>Rol</label>
-              <select id="editEmployeRole" class="form-control" required>
-                <option value="kuryer">kuryer</option>
-              </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Saqlash</button>
-          </form>
         </div>
       </div>
 
@@ -334,7 +200,6 @@
     <script src="js/settings.js"></script>
     <script src="js/gleek.js"></script>
     <script src="js/styleSwitcher.js"></script>
-    <script src="fetch/employe.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>
