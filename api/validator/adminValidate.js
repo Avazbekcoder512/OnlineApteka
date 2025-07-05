@@ -33,9 +33,8 @@ const adminUpdateSchema = Joi.object({
         'string.min': 'Ism kamida {#limit} ta belgidan iborat boʻlishi kerak!',
         'string.max': 'Ism eng koʻpi bilan {#limit} ta belgidan iborat boʻlishi kerak!',
     }),
-    phone: Joi.string().alphanum().trim().min(12).max(13).messages({
+    phone: Joi.string().trim().min(12).max(13).messages({
         'string.base': 'Telefon raqam faqat matn boʻlishi kerak',
-        'string.alphanum': 'Telefon raqam faqat harf va raqamlardan iborat bo‘lishi kerak',
         'string.min': 'Telefon raqam kamida {#limit} ta belgidan iborat boʻlishi kerak!',
         'string.max': 'Telefon raqam eng koʻpi bilan {#limit} ta belgidan iborat boʻlishi kerak!',
     }),

@@ -132,13 +132,13 @@ const updateAdmin = async (req, res) => {
             })
         }
 
-        const checkPhone = await prisma.admin.findUnique({ where: value.phone })
+        const checkPhone = await prisma.admin.findUnique({ where: { phone: value.phone } })
 
-        if (checkPhone) {
+        if (checkPhone && checkPhone.id !== id) {
             return res.status(400).send({
                 success: false,
-                error: 'Bunday telefon raqamga ega admin mavjud! Iltimos boshqa raqam kiritng!'
-            })
+                error: 'Bunday telefon raqamga ega admin mavjud! Iltimos boshqa raqam kiriting!'
+            });
         }
 
         await prisma.admin.update({
