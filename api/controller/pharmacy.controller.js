@@ -99,6 +99,13 @@ const getOnePharmacy = async (req, res) => {
     try {
         const id = Number(req.params.id)
 
+        if (isNaN(id)) {
+            return res.status(400).send({
+                success: false,
+                error: "ID noto‘g‘ri formatda!"
+            });
+        }
+
         const pharmacy = await prisma.pharmacy.findFirst({ where: { id } })
 
         if (!pharmacy) {
@@ -122,6 +129,13 @@ const getOnePharmacy = async (req, res) => {
 const pharmacyUpdate = async (req, res) => {
     try {
         const id = Number(req.params.id)
+
+        if (isNaN(id)) {
+            return res.status(400).send({
+                success: false,
+                error: "ID noto‘g‘ri formatda!"
+            });
+        }
 
         const pharmacy = await prisma.pharmacy.findFirst({ where: { id } })
 
@@ -203,6 +217,13 @@ const pharmacyUpdate = async (req, res) => {
 const deletePharmacy = async (req, res) => {
     try {
         const id = Number(req.params.id)
+
+        if (isNaN(id)) {
+            return res.status(400).send({
+                success: false,
+                error: "ID noto‘g‘ri formatda!"
+            });
+        }
 
         const pharmacy = await prisma.pharmacy.findFirst({ where: { id } })
 

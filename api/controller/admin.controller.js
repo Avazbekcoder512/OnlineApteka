@@ -84,6 +84,13 @@ const getOneAdmin = async (req, res) => {
     try {
         const id = Number(req.params.id)
 
+        if (isNaN(id)) {
+            return res.status(400).send({
+                success: false,
+                error: "ID noto‘g‘ri formatda!"
+            });
+        }
+
         const admin = await prisma.admin.findFirst({ where: { id } })
 
         if (!admin) {
@@ -107,6 +114,13 @@ const getOneAdmin = async (req, res) => {
 const updateAdmin = async (req, res) => {
     try {
         const id = Number(req.params.id)
+
+        if (isNaN(id)) {
+            return res.status(400).send({
+                success: false,
+                error: "ID noto‘g‘ri formatda!"
+            });
+        }
 
         const admin = await prisma.admin.findFirst({ where: { id } })
 
@@ -161,6 +175,13 @@ const updateAdminPassword = async (req, res) => {
     try {
         const id = Number(req.params.id)
 
+        if (isNaN(id)) {
+            return res.status(400).send({
+                success: false,
+                error: "ID noto‘g‘ri formatda!"
+            });
+        }
+
         const admin = await prisma.admin.findFirst({ where: { id } })
 
         if (!admin) {
@@ -202,6 +223,13 @@ const updateAdminPassword = async (req, res) => {
 const deleteAdmin = async (req, res) => {
     try {
         const id = Number(req.params.id)
+
+        if (isNaN(id)) {
+            return res.status(400).send({
+                success: false,
+                error: "ID noto‘g‘ri formatda!"
+            });
+        }
 
         const admin = await prisma.admin.findFirst({ where: { id } })
 

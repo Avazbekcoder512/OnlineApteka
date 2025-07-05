@@ -83,6 +83,13 @@ const getOneSupplier = async (req, res) => {
     try {
         const id = Number(req.params.id)
 
+        if (isNaN(id)) {
+            return res.status(400).send({
+                success: false,
+                error: "ID noto‘g‘ri formatda!"
+            });
+        }
+
         const supplier = await prisma.supplier.findFirst({ where: { id } })
 
         if (!supplier) {
@@ -105,6 +112,13 @@ const getOneSupplier = async (req, res) => {
 const updateSupplier = async (req, res) => {
     try {
         const id = Number(req.params.id)
+
+        if (isNaN(id)) {
+            return res.status(400).send({
+                success: false,
+                error: "ID noto‘g‘ri formatda!"
+            });
+        }
 
         const supplier = await prisma.supplier.findFirst({ where: { id } })
 
@@ -147,6 +161,13 @@ const updateSupplier = async (req, res) => {
 const deleteSupplier = async (req, res) => {
     try {
         const id = Number(req.params.id)
+
+        if (isNaN(id)) {
+            return res.status(400).send({
+                success: false,
+                error: "ID noto‘g‘ri formatda!"
+            });
+        }
 
         const supplier = await prisma.supplier.findFirst({ where: { id } })
 

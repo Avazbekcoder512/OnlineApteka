@@ -44,4 +44,4 @@ const adminUpdateSchema = Joi.object({
     })
 })
 
-export { adminCreateSchema, adminUpdateSchema}
+export { adminCreateSchema, adminUpdateSchema }
