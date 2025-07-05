@@ -109,7 +109,7 @@
               >
             </ul>
             <ul aria-expanded="false">
-              <a href="pharmaces.html">
+              <a href="pharmacies.html">
                 <i class="fa-solid fa-hospital" style="padding-right: 5px"></i
                 >Dorixonalar</a
               >
@@ -149,7 +149,7 @@
                       </tr>
                     </thead>
                     <tbody id="adminList">
-                      <tr>
+                      <!-- <tr>
                         <td>1</td>
                         <td>Air Conditioner</td>
                         <td>+998901234567</td>
@@ -179,52 +179,7 @@
                               <i class="fa-solid fa-trash-can"></i> </a
                           ></span>
                         </td>
-                      </tr>
-                      <!-- <tr>
-                                                <td>2</td>
-                                                <td>Textiles</td>
-                                                <td>+998901234568</td>
-                                                <td><span class="label gradient-2 btn-rounded">superadmin</span>
-                                                </td>
-                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa-solid fa-trash-can"></i></a></span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Milk Powder</td>
-                                                
-                                                <td>+998901234569</td>
-                                                <td><span class="label gradient-5 btn-rounded">admin</span>
-                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa-solid fa-trash-can"></i></a></span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Vehicles</td>
-                                               
-                                                <td>+998901234570</td>
-                                                <td><span class="label gradient-5 btn-rounded">admin</span>
-                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa-solid fa-trash-can"></i></a></span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Boats</td>
-                                                <td>+998901234571</td>
-                                                <td><span class="label gradient-5 btn-rounded">admin</span>
-                                               
-                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa-solid fa-trash-can"></i></a></span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>Boats</td>
-                                               
-                                                <td>+998901234572</td>
-                                                <td><span class="label gradient-5 btn-rounded">admin</span>
-                                                <td><span><a href="#" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </a><a href="#" data-toggle="tooltip" data-placement="top" title="Close"><i class="fa-solid fa-trash-can"></i></a></span>
-                                                </td>
-                                            </tr> -->
+                      </tr> -->
                     </tbody>
                   </table>
                 </div>
@@ -280,7 +235,7 @@
               <div class="form-group">
                 <label>Rol</label>
                 <select class="form-control" id="adminRole">
-                  <option value="superadmin">superadmin</option>
+                  <option value="superAdmin">superadmin</option>
                   <option value="admin">admin</option>
                 </select>
               </div>
@@ -322,15 +277,19 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
           "
         >
-            <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Yopish"
-              >
-                <span onclick="closeModal()" style="float: right; cursor: pointer" aria-hidden="true"
-            >&times;</span>
-              </button>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Yopish"
+          >
+            <span
+              onclick="closeModal()"
+              style="float: right; cursor: pointer"
+              aria-hidden="true"
+              >&times;</span
+            >
+          </button>
           <h4>Admin tahrirlash</h4>
           <form id="editAdminForm">
             <input type="hidden" id="editAdminId" />
@@ -358,6 +317,15 @@
                 <option value="superadmin">superadmin</option>
                 <option value="admin">admin</option>
               </select>
+            </div>
+            <div class="form-group">
+              <label>Yangi parol (agar o'zgartirmoqchi bo'lsangiz)</label>
+              <input
+                type="password"
+                id="editAdminPassword"
+                class="form-control"
+                placeholder="Parolni kiriting yoki bo'sh qoldiring"
+              />
             </div>
             <button type="submit" class="btn btn-primary">Saqlash</button>
           </form>
