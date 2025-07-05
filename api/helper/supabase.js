@@ -36,5 +36,15 @@ const storage = {
         } catch (error) {
             throw error
         }
+    },
+
+    delete: async (filePath) => {
+        const { error } = await supabase
+            .storage
+            .from(bucketName)
+            .remove([filePath])
+        if (error) throw error
     }
 }
+
+export default storage

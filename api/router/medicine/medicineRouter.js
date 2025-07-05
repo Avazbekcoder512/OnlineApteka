@@ -10,7 +10,7 @@ router
 .post('/medicine/create', upload.single('image'), createMedicine)
 .get('/medicines', getAllMedicines)
 .get('/medicine/:id', getOneMedicine)
-.put('/medicine/:id/update', updateMedicine)
+.put('/medicine/:id/update', upload.single('image'), updateMedicine)
 .delete('/medicine/:id/delete', deleteMedicine)
 
 export default router
