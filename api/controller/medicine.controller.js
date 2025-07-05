@@ -157,7 +157,7 @@ const updateMedicine = async (req, res) => {
         if (req.file) {
             const { error: imgErr } = imageSchema.validate(req.file, { abortEarly: false });
             if (imgErr) {
-                return res.status(400).json({
+                return res.status(400).send({
                     success: false,
                     error: imgErr.details[0].message,
                 });
