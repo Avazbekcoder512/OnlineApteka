@@ -1,5 +1,5 @@
 function  fetchPharmacies() {
-    fetch('/api/pharmacies')
+    fetch('http://localhost:7777/api/pharmacies')
         .then(res => res.json())
         .then(data => {
             const list = document.getElementById('pharmacyList');
@@ -27,7 +27,7 @@ function createPharmacy() {
     const address = document.getElementById('nnewPharmacyAddress').value;
     const phone = document.getElementById('newPharmacyPhone').value;
 
-    fetch('/api/pharmacies/create', {
+    fetch('http://localhost:7777/api/pharmacies/create', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -49,8 +49,9 @@ function updatePharmacy(e) {
     const name = document.getElementById('editPharmacyName').value;
     const address = document.getElementById('editPharmacyAddress').value;
     const phone = document.getElementById('editPharmacyPhone').value;
+     $('#editPharmacyModal').modal('show');
 
-    fetch(`/api/pharmacies/update/${id}`, {
+    fetch(`http://localhost:7777/api/pharmacies/update/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -66,7 +67,7 @@ function updatePharmacy(e) {
 
 function deletePharmacy(id) {
     if (confirm("Rostan ham o'chirmoqchimisiz?")) {
-        fetch(`/api/pharmacies/delete/${id}`, {
+        fetch(`http://localhost:7777/api/pharmacies/delete/${id}`, {
             method: 'DELETE'
         })
         .then(res => res.json())
