@@ -70,6 +70,7 @@ model Medicine {
   one_plate_price Int      @db.Integer
   one_box_price   Int      @db.Integer
   warehouse       Int      @db.Integer
+  image_path      String  @db.Text
   image           String   @db.Text
   pharmacyId      Int
   pharmacy        Pharmacy @relation(fields: [pharmacyId], references: [id])
