@@ -25,13 +25,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 }</span></td>
                 <td>
                           <span>
-                            <a
-                              href="#"
-                              data-toggle="tooltip"
+                            <a href="#" data-toggle="tooltip"
                               data-placement="top"
-                              title="Edit"
-                              onclick="openModal({id: 1, name: 'Usercha', phone: '+998909876543', role: 'admin'})"
-                            >
+                              title="Edit" 
+                              onclick="openModal(this)" 
+                              data-id="${admin.id}" 
+                              data-name="${admin.name}"
+                              data-phone="${admin.phone}"
+                              data-role="${admin.role}">
                               <i class="fa-solid fa-pen-to-square"></i
                             ></a>
                             <a
@@ -39,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
                               data-toggle="tooltip"
                               data-placement="top"
                               title="Close"
-                              onclick="deleteAdmin(1)"
+                              onclick="deleteAdmin(${admin.id})"
                             >
                               <i class="fa-solid fa-trash-can"></i> </a
                           ></span>
@@ -102,14 +103,15 @@ function getCookie(name) {
 }
 
 // Edit Admin
-function openModal(admin) {
-  document.getElementById("editAdminId").value = admin.id;
-  document.getElementById("editAdminName").value = admin.name;
-  document.getElementById("editAdminPhone").value = admin.phone;
-  document.getElementById("editAdminRole").value = admin.role;
+function openModal(el) {
+  document.getElementById("editAdminId").value = el.dataset.id;
+  document.getElementById("editAdminName").value = el.dataset.name;
+  document.getElementById("editAdminPhone").value = el.dataset.phone;
+  document.getElementById("editAdminRole").value = el.dataset.role;
 
   document.getElementById("editAdminModal").style.display = "block";
 }
+
 
 function closeModal() {
   document.getElementById("editAdminModal").style.display = "none";
@@ -122,6 +124,7 @@ window.onclick = function (event) {
   }
 };
 
+// editAdminForm submit event
 document
   .getElementById("editAdminForm")
   .addEventListener("submit", function (e) {
@@ -131,25 +134,15 @@ document
     const name = document.getElementById("editAdminName").value;
     const phone = document.getElementById("editAdminPhone").value;
     const role = document.getElementById("editAdminRole").value;
-    const password = document.getElementById("editAdminPassword").value;
-    // const token = getCookie("token");
+    const token = localStorage.getItem("token");
 
-    const adminData = {
-    id,
-    name,
-    phone,
-    role,
-    };
-
-    if (password.trim() !== "") {
-        adminData.password = password;  
-    }
+    const adminData = { name, phone, role };
 
     fetch(`http://localhost:7777/admin/${id}/update`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        // 'Authorization': `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(adminData),
     })
@@ -159,14 +152,48 @@ document
         return res.json();
       })
       .then((data) => {
-        alert("Admin muvaffaqiyatli yangilandi!");
-        closeModal();
-        location.reload();
+        console.log("Admin ma'lumotlari yangilandi");
+        // password bo‘lsa alohida update qilinadi
+        updatePassword(id);
       })
       .catch((err) => {
         console.error("Xatolik:", err);
       });
   });
+
+function updatePassword(id) {
+  const password = document.getElementById("editAdminPassword").value.trim();
+  const token = localStorage.getItem("token");
+
+  if (password === "") {
+    alert("Admin ma'lumotlari muvaffaqiyatli yangilandi!");
+    closeModal();
+    location.reload();
+    return;
+  }
+
+  fetch(`http://localhost:7777/admin/${id}/update-pass`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ password }),
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error("Parol yangilashda xatolik yuz berdi");
+      return res.json();
+    })
+    .then((data) => {
+      alert("Admin ma'lumotlari va paroli muvaffaqiyatli yangilandi!");
+      closeModal();
+      location.reload();
+    })
+    .catch((err) => {
+      console.error("Parol yangilash xatoligi:", err);
+    });
+}
+
 
 // Delete Admin
 function deleteAdmin(id) {
@@ -183,7 +210,7 @@ function deleteAdmin(id) {
     if (result.isConfirmed) {
       const token = getCookie("token");
 
-      fetch(`http://localhost:7777/api/admins/${id}`, {
+      fetch(`http://localhost:7777/admin/${id}/delete`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
