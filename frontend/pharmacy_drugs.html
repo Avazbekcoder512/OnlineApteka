@@ -125,12 +125,11 @@
                 >
                   <h4 class="card-title">Dorilar</h4>
                   <button
-                    type="button"
                     class="btn btn-primary mb-3"
                     data-toggle="modal"
-                    data-target="#createPharmacyModal"
+                    data-target="#createMedicineModal"
                   >
-                    Yangi Dori Qo'shish
+                    <i class="fa fa-plus"></i> Dori qo‘shish
                   </button>
                 </div>
                 <div class="table-responsive">
@@ -147,18 +146,26 @@
                       </tr>
                     </thead>
                     <tbody id="medicineBody">
-                         <tr>
-                    <td>1</td>
-                    <td>Joxa</td>
-                    <td>Amir Temur ko'chasi</td>
-                    <td>+998904385114</td>
-                    <td>
-                    <a href=`pharmacy_drugs.html?pharmacyId=${ph.id}`><i class="fa fa-eye"></i></a>
-                    <a href="#" onclick='openEditModal(`${JSON.stringify(ph)}`)'><i class="fa fa-pen-to-square"></i></a>
-                    <a href="#" onclick='deletePharmacy(`${ph.id}`)'><i class="fa fa-trash-can"></i></a>
-                    </td>
-                    </tr>
- </tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Joxa</td>
+                        <td>Amir Temur ko'chasi</td>
+                        <td>+998904385114</td>
+                        <td>
+                          <a href="`pharmacy_drugs.html?pharmacyId" ="${ph.id}`"
+                            ><i class="fa fa-eye"></i
+                          ></a>
+                          <a
+                            href="#"
+                            onclick="openEditModal(`${JSON.stringify(ph)}`)"
+                            ><i class="fa fa-pen-to-square"></i
+                          ></a>
+                          <a href="#" onclick="deletePharmacy(`${ph.id}`)"
+                            ><i class="fa fa-trash-can"></i
+                          ></a>
+                        </td>
+                      </tr>
+                    </tbody>
                   </table>
                 </div>
               </div>
@@ -167,41 +174,187 @@
         </div>
       </div>
 
-    <!-- Dori malumotlari -->
-     <div id="viewModal" class="modal">
+      <!-- Dori malumotlari -->
+      <div id="viewModal" class="modal">
         <div class="modal-content">
-            <h3>Dori Malumotlari</h3>
-            <p id="viewDetails"></p>
-            <button onclick="closeModal('viewModal')">Yopish</button>
+          <h3>Dori Malumotlari</h3>
+          <p id="viewDetails"></p>
+          <button onclick="closeModal('viewModal')">Yopish</button>
         </div>
-     </div>
+      </div>
 
-     <!-- Edit Modal -->
-     <div id="editModal" class="modal">
+      <!-- Create Modal -->
+      <div
+        class="modal fade"
+        id="createMedicineModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="createMedicineLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <form id="createMedicineForm" enctype="multipart/form-data">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Yangi dori qo‘shish</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                  <span>&times;</span>
+                </button>
+              </div>
+
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="nameUz">Nomi (UZ)</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nameUz"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="nameRu">Nomi (RU)</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nameRu"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="nameEn">Nomi (EN)</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nameEn"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="quantity">Soni</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="quantity"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="priceDisk">Narxi (disk)</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="priceDisk"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="priceBox">Narxi (quti)</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="priceBox"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="sizeDisk">O‘lcham (disk)</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="sizeDisk"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="sizeBox">O‘lcham (quti)</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="sizeBox"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="manufacturer">Ishlab chiqaruvchi</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="manufacturer"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <select id="pharmacySelect" name="pharmacyId" required>
+                    <option value="">-- Dorixona tanlang --</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="imageFile">Rasm yuklash</label>
+                  <input
+                    type="file"
+                    class="form-control-file"
+                    id="imageFile"
+                    accept="image/*"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Bekor qilish
+                </button>
+                <button type="submit" class="btn btn-success">Qo‘shish</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Edit Modal -->
+      <div id="editModal" class="modal">
         <div class="modal-content">
-            <h3>Dori Malumotlarini Tahrirlash</h3>
-                <form id="medicineForm">
-                    <input type="hidden" id="medId">
-                    <label>Nom (uz): <input type="text" id="nameUz" required></label>
-                    <label>Nom (ru): <input type="text" id="nameRu"></label>
-                    <label>Nom (en): <input type="text" id="nameEn"></label>
-                    <label>Soni: <input type="number" id="quantity" required></label>
-                    <label>Narxi (disk): <input type="number" id="priceDisk"></label>
-                    <label>Narxi (quti): <input type="number" id="priceBox"></label>
-                    <label>O'lcham (disk): <input type="text" id="sizeDisk"></label>
-                    <label>O'lcham (quti): <input type="text" id="sizeBox"></label>
-                    <label>Ishlab chiqaruvchi: <input type="text" id="manufacturer"></label>
-                    <label>Rasm: 
-                        <input type="file" id="image" accept="image/*" onchange="previewImage(event)">
-                        <br><img id="imagePreview" src="" style="max-width: 100px; display: none;">
-                    </label>
-                    <br>
-                    <button type="submit">Saqlash</button>
-                    <button type="button" onclick="closeModal('editModal')">Yopish</button>
-                </form>
+          <h3>Dori Malumotlarini Tahrirlash</h3>
+          <form id="medicineForm">
+            <input type="hidden" id="medId" />
+            <label>Nom (uz): <input type="text" id="nameUz" required /></label>
+            <label>Nom (ru): <input type="text" id="nameRu" /></label>
+            <label>Nom (en): <input type="text" id="nameEn" /></label>
+            <label>Soni: <input type="number" id="quantity" required /></label>
+            <label>Narxi (disk): <input type="number" id="priceDisk" /></label>
+            <label>Narxi (quti): <input type="number" id="priceBox" /></label>
+            <label>O'lcham (disk): <input type="text" id="sizeDisk" /></label>
+            <label>O'lcham (quti): <input type="text" id="sizeBox" /></label>
+            <label
+              >Ishlab chiqaruvchi: <input type="text" id="manufacturer"
+            /></label>
+            <label
+              >Rasm:
+              <input
+                type="file"
+                id="image"
+                accept="image/*"
+                onchange="previewImage(event)"
+              />
+              <br /><img
+                id="imagePreview"
+                src=""
+                style="max-width: 100px; display: none"
+              />
+            </label>
+            <br />
+            <button type="submit">Saqlash</button>
+            <button type="button" onclick="closeModal('editModal')">
+              Yopish
+            </button>
+          </form>
         </div>
-        </div>
-
+      </div>
 
       <div class="footer">
         <div class="copyright">
@@ -217,6 +370,6 @@
     <script src="js/gleek.js"></script>
     <script src="js/styleSwitcher.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="js/pharmacy_drugs.js"></script>
+    <script src="fetch/pharmacy_drugs.js"></script>
   </body>
 </html>
