@@ -8,9 +8,8 @@ const createSupplierSchema = Joi.object({
         'string.max': 'Ism eng koʻpi bilan {#limit} ta belgidan iborat boʻlishi kerak!',
         'any.required': 'Ism majburiy maydon!'
     }),
-    phone: Joi.string().alphanum().trim().min(12).max(13).required().messages({
+    phone: Joi.string().trim().min(12).max(13).required().messages({
         'string.base': 'Telefon raqam faqat matn boʻlishi kerak',
-        'string.alphanum': 'Telefon raqam faqat harf va raqamlardan iborat bo‘lishi kerak',
         'string.min': 'Telefon raqam kamida {#limit} ta belgidan iborat boʻlishi kerak!',
         'string.max': 'Telefon raqam eng koʻpi bilan {#limit} ta belgidan iborat boʻlishi kerak!',
         'any.required': 'Telefon raqam majburiy maydon!'
@@ -35,9 +34,8 @@ const updateSupplierSchema = Joi.object({
         'string.min': 'Ism kamida {#limit} ta belgidan iborat boʻlishi kerak!',
         'string.max': 'Ism eng koʻpi bilan {#limit} ta belgidan iborat boʻlishi kerak!',
     }),
-    phone: Joi.string().alphanum().trim().min(12).max(13).messages({
+    phone: Joi.string().trim().min(12).max(13).messages({
         'string.base': 'Telefon raqam faqat matn boʻlishi kerak',
-        'string.alphanum': 'Telefon raqam faqat harf va raqamlardan iborat bo‘lishi kerak',
         'string.min': 'Telefon raqam kamida {#limit} ta belgidan iborat boʻlishi kerak!',
         'string.max': 'Telefon raqam eng koʻpi bilan {#limit} ta belgidan iborat boʻlishi kerak!',
     }),
