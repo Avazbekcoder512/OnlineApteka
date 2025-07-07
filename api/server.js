@@ -4,6 +4,7 @@ import { PORT } from './config/config.js'
 const app = express()
 import cors from 'cors'
 import { appRouter } from './router/router.js'
+import './bot/bot.js'
 
 
 app.use(cors({
@@ -27,5 +28,4 @@ app.use((error, req, res, next) => {
 const port = PORT || 3000
 app.listen(port, () => {
     console.log(`Server ${port}-portda ishga tushdi...`);
-
 })
