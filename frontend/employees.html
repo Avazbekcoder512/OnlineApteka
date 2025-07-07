@@ -149,37 +149,6 @@
                       </tr>
                     </thead>
                     <tbody id="employeList">
-                      <tr>
-                        <td>1</td>
-                        <td>Air Conditioner</td>
-                        <td>+998901234567</td>
-                        <td>
-                          <span class="label gradient-1 btn-rounded"
-                            >kuryer</span
-                          >
-                        </td>
-                        <td>
-                          <span>
-                            <a
-                              href="#"
-                              data-toggle="tooltip"
-                              data-placement="top"
-                              title="Edit"
-                              onclick="openModal({id: 1, name: 'Usercha', phone: '+998909876543', role: 'employe'})"
-                            >
-                              <i class="fa-solid fa-pen-to-square"></i
-                            ></a>
-                            <a
-                              href="#"
-                              data-toggle="tooltip"
-                              data-placement="top"
-                              title="Close"
-                              onclick="deleteEmploye(1)"
-                            >
-                              <i class="fa-solid fa-trash-can"></i> </a
-                          ></span>
-                        </td>
-                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -235,7 +204,7 @@
               <div class="form-group">
                 <label>Rol</label>
                 <select class="form-control" id="employeRole">
-                  <option value="kuryer">kuryer</option>
+                  <option value="supplier">kuryer</option>
                 </select>
               </div>
               <div class="form-group">
@@ -262,64 +231,65 @@
         </div>
       </div>
 
-      <!-- Edit modal -->
-      <div id="editEployeModal" class="modal" style="display: none">
-        <div
-          class="modal-content"
-          style="
-            max-width: 500px;
-            margin: auto;
-            margin-top: 50px;
-            padding: 20px;
-            border-radius: 8px;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-          "
-        >
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Yopish"
-          >
-            <span
-              onclick="closeModal()"
-              style="float: right; cursor: pointer"
-              aria-hidden="true"
-              >&times;</span
-            >
-          </button>
-          <h4>Xodim tahrirlash</h4>
-          <form id="editemployeForm">
-            <input type="hidden" id="editEmployeId" />
-            <div class="form-group">
-              <label>Ism</label>
-              <input
-                type="text"
-                id="editEmployeName"
-                class="form-control"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label>Telefon</label>
-              <input
-                type="text"
-                id="editEmployePhone"
-                class="form-control"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label>Rol</label>
-              <select id="editEmployeRole" class="form-control" required>
-                <option value="kuryer">kuryer</option>
-              </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Saqlash</button>
-          </form>
-        </div>
+    <!-- Edit modal -->
+<div id="editEmployeModal" class="modal" style="display: none">
+  <div
+    class="modal-content"
+    style="
+      max-width: 500px;
+      margin: auto;
+      margin-top: 50px;
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    "
+  >
+    <button
+      type="button"
+      class="close"
+      data-dismiss="modal"
+      aria-label="Yopish"
+    >
+      <span
+        onclick="closeModal()"
+        style="float: right; cursor: pointer"
+        aria-hidden="true"
+        >&times;</span
+      >
+    </button>
+    <h4>Xodim tahrirlash</h4>
+    <form id="editEmployeForm">
+      <input type="hidden" id="editEmployeId" />
+      <div class="form-group">
+        <label>Ism</label>
+        <input
+          type="text"
+          id="editEmployeName"
+          class="form-control"
+          required
+        />
       </div>
+      <div class="form-group">
+        <label>Telefon</label>
+        <input
+          type="text"
+          id="editEmployePhone"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label>Rol</label>
+        <select id="editEmployeRole" class="form-control" required>
+          <option value="supplier">kuryer</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Saqlash</button>
+    </form>
+  </div>
+</div>
+
 
       <div class="footer">
         <div class="copyright">

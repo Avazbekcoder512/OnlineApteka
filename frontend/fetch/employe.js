@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tableBody = document.querySelector("table tbody");
     const token = localStorage.getItem('token');
 
-    fetch('http://localhost:7777/api/employees', {
+    fetch('http://localhost:7777/suppliers', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -12,25 +12,40 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(res => res.json())
     .then(data => {
         tableBody.innerHTML = '';
-        data.forEach(employe => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>${employe.id}</td>
-                <td>${employe.name}</td>
-                <td>${employe.phone}</td>
-                <td><span class="label gradient-1 btn-rounded">${employe.role}</span></td>
-                <td>
-                    <span>
-                        <a href="#" data-toggle="tooltip" data-placement="top" data-id="${employe.id}" title="Edit">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" data-id="${employe.id}" title="Delete">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </a>
-                    </span>
-                </td>`;
-            tableBody.appendChild(tr);
-        });
+     // tableBody ichiga rows qo‘shilganda, Edit tugmasini ulang:
+data.suppliers.forEach((employe, index) => {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td>${index + 1}</td>
+    <td>${employe.name}</td>
+    <td>${employe.phone}</td>
+    <td><span class="label gradient-1 btn-rounded">${employe.role}</span></td>
+    <td>
+      <span>
+        <a href="#" class="edit-btn" data-id="${employe.id}" title="Edit">
+          <i class="fa-solid fa-pen-to-square"></i>
+        </a>
+        <a href="#" class="delete-btn" data-id="${employe.id}" title="Delete">
+          <i class="fa-solid fa-trash-can"></i>
+        </a>
+      </span>
+    </td>
+  `;
+  tableBody.appendChild(tr);
+
+  // Edit tugmasi bosilganda openModal chaqiriladi
+  tr.querySelector('.edit-btn').addEventListener('click', (e) => {
+    e.preventDefault();
+    openModal(employe);
+  });
+
+  // Delete tugmasi uchun kerak bo‘lsa: 
+  tr.querySelector('.delete-btn').addEventListener('click', (e) => {
+    e.preventDefault();
+    deleteEmploye(employe.id);
+  });
+});
+
 })
     .catch(error => {
         console.error('Xatolik:', error);
@@ -45,7 +60,7 @@ function getCookie(name) {
 
 
 // Create employe
-document.getElementById("creteEmployeForm").addEventListener("submit", function(e) {
+document.getElementById("createEmployeForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
     const name = document.getElementById("employeName").value
@@ -54,7 +69,7 @@ document.getElementById("creteEmployeForm").addEventListener("submit", function(
     const role = document.getElementById("employeRole").value;
     const token = getCookie("token");
 
-    fetch('http://localhost:7777/api/employees', {
+    fetch('http://localhost:7777/supplier/create', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -82,55 +97,56 @@ function getCookie(name) {
     return value ? value[2] : null;
 }
 
-// Edit employe
+// Edit employe modal ochish
 function openModal(employe) {
-    document.getElementById("editEmployeId").value = employe.id;
-    document.getElementById("editEmployeName").value = employe.name;
-    document.getElementById("editEmployePhone").value = employe.phone;
-    document.getElementById("editEmployeRole").value = employe.role;
-    
-    document.getElementById("editEmployeModal").style.display = "block";
+  document.getElementById("editEmployeId").value = employe.id;
+  document.getElementById("editEmployeName").value = employe.name;
+  document.getElementById("editEmployePhone").value = employe.phone;
+  document.getElementById("editEmployeRole").value = employe.role;
+
+  document.getElementById("editEmployeModal").style.display = "block";
 }
 
+// Modalni yopish
 function closeModal() {
-    document.getElementById("editEmployeModal").style.display = "none";
+  document.getElementById("editEmployeModal").style.display = "none";
 }
 
-window.onclick = function(event) {
-    const modal = document.getElementById("editEmployeModal");
-    if (event.target == modal) {
-        closeModal();
-    }
-}
-
-document.getElementById("editEmployeForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const id = document.getElementById("editEmployeId").value;
-    const name = document.getElementById("editEmployeName").value;
-    const phone = document.getElementById("editEmployePhone").value;
-    const role = document.getElementById("editEmployeRole").value;
-
-    // const token = getCookie("token");
-
-    fetch(`http://localhost:7777/api/employees/${id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-            // 'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({ name, phone, role })
-})
-.then(res => res.json())
-.then(data => {
-    alert('Xodim muvaffaqiyatli yangilandi!');
+// Modal tashqarisiga bosganda yopish
+window.onclick = function (event) {
+  const modal = document.getElementById("editEmployeModal");
+  if (event.target == modal) {
     closeModal();
-    location.reload();
-})
-.catch(err => {
-    console.error('Xatolik:', err);
-})
-})
+  }
+};
+
+// Edit formni submit qilish
+document.getElementById("editEmployeForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const id = document.getElementById("editEmployeId").value;
+  const name = document.getElementById("editEmployeName").value;
+  const phone = document.getElementById("editEmployePhone").value;
+  const role = document.getElementById("editEmployeRole").value;
+
+  fetch(`http://localhost:7777/supplier/${id}/update`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ name, phone, role })
+  })
+    .then(res => res.json())
+    .then(data => {
+      alert('Xodim muvaffaqiyatli yangilandi!');
+      closeModal();
+      location.reload();
+    })
+    .catch(err => {
+      console.error('Xatolik:', err);
+    });
+});
+
 
 // Delete employe
 function deleteEmploye(id) {
@@ -147,7 +163,7 @@ function deleteEmploye(id) {
         if (result.isConfirmed) {
             const token = getCookie("token");
 
-            fetch(`http://localhost:7777/api/employees/${id}`, {
+            fetch(`http://localhost:7777/supplier/${id}/delete`, {
                 method: 'DELETE',
                 headers: {
                     "Content-Type": "application/json",

@@ -147,35 +147,6 @@
                       </tr>
                     </thead>
                     <tbody id="pharmacyList">
-                      <tr>
-                        <td>1</td>
-                        <td>Air Conditioner</td>
-                         <td>
-                         Moskva Shahar, Tashkent Ko'chasi, 12-uy
-                        </td>
-                        <td>+998901234567</td>
-                        <td>
-                          <span>
-                            <a
-                              href="#"
-                              data-toggle="tooltip"
-                              data-placement="top"
-                              title="Edit"
-                             onclick="editPharmacyModal({id: 1, name: 'Usercha', phone: '+998909876543', address: 'Toshkent'})"
-                            >
-                              <i class="fa-solid fa-pen-to-square"></i
-                            ></a>
-                            <a
-                              href="#"
-                              data-toggle="tooltip"
-                              data-placement="top"
-                              title="Close"
-                              onclick="deletePharmacy(1)"
-                            >
-                              <i class="fa-solid fa-trash-can"></i> </a
-                          ></span>
-                        </td>
-                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -185,107 +156,123 @@
         </div>
       </div>
 
-<!-- create modal -->
-      <div class="modal fade" id="createPharmacyModal" tabindex="-1">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Yangi Dorixona Qo'shish</h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Yopish"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form id="createPharmacyForm">
-                <div class="mb-3">
-                  <label for="pharmacyName" class="form-label">Nomi</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="pharmacyName"
-                    required
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="pharmacyAddress" class="form-label">Manzil</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="pharmacyAddress"
-                    required
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="pharmacyPhone" class="form-label">Telefon</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="pharmacyPhone"
-                    required
-                  />
-                </div>
-                <button type="submit" class="btn btn-primary">Qo'shish</button>
-              </form>
-            </div>
-          </div>
- </div>
-    </div>
+ <!-- create modal -->
+<div class="modal fade" id="createPharmacyModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <h5 class="modal-title">Yangi Dorixona Qo‘shish</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Yopish">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
 
-    <!-- edit modal -->
-    <div class="modal fade" id="editPharmacyModal" tabindex="-1">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Dorixonani Tahrirlash</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Yopish"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
+      <div class="modal-body">
+        <form id="createPharmacyForm">
+          
+          <div class="mb-3">
+            <label for="pharmacyName" class="form-label">Nomi</label>
+            <input type="text" class="form-control" id="pharmacyName" required />
           </div>
-          <div class="modal-body">
-            <form id="editPharmacyForm">
-              <input type="hidden" id="editPharmacyId" />
-              <div class="mb-3">
-                <label for="editPharmacyName" class="form-label">Nomi</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="editPharmacyName"
-                  required
-                />
-              </div>
-              <div class="mb-3">
-                <label for="editPharmacyAddress" class="form-label">Manzil</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="editPharmacyAddress"
-                  required
-                />
-              </div>
-              <div class="mb-3">
-                <label for="editPharmacyPhone" class="form-label">Telefon</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="editPharmacyPhone"
-                  required>
-              </div>
-              <button type="submit" class="btn btn-primary">Saqlash</button>
-            </form>
+
+          <div class="mb-3">
+            <label for="pharmacyAddress" class="form-label">Manzil</label>
+            <input type="text" class="form-control" id="pharmacyAddress" required />
           </div>
-        </div>
+
+          <div class="mb-3">
+            <label for="pharmacyPhone" class="form-label">Telefon</label>
+            <input type="text" class="form-control" id="pharmacyPhone" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="locationUrl" class="form-label">Joylashuv havolasi</label>
+            <input type="text" class="form-control" id="locationUrl" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="destination" class="form-label">Mo‘ljal</label>
+            <input type="text" class="form-control" id="destination" required />
+          </div>
+           <select id="adminSelect">
+    <option value="">Admin tanlang</option>
+  </select>
+
+  <select id="supplierSelect">
+    <option value="">Supplier tanlang</option>
+  </select>
+
+          <button type="submit" class="btn btn-primary">Qo‘shish</button>
+        </form>
       </div>
     </div>
+  </div>
+</div>
+
+
+
+  <!-- edit modal -->
+<div class="modal fade" id="editPharmacyModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Dorixonani Tahrirlash</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Yopish">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form id="editPharmacyForm">
+          <input type="hidden" id="editPharmacyId" />
+
+          <div class="mb-3">
+            <label for="editPharmacyName" class="form-label">Nomi</label>
+            <input type="text" class="form-control" id="editPharmacyName" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="editPharmacyAddress" class="form-label">Manzil</label>
+            <input type="text" class="form-control" id="editPharmacyAddress" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="editPharmacyPhone" class="form-label">Telefon</label>
+            <input type="text" class="form-control" id="editPharmacyPhone" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="editPharmacyLocationUrl" class="form-label">Joylashuv havolasi (Google/Yandex Maps)</label>
+            <input type="url" class="form-control" id="editPharmacyLocationUrl" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="editPharmacyDestination" class="form-label">Mo‘ljal</label>
+            <input type="text" class="form-control" id="editPharmacyDestination" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="editAdminSelect" class="form-label">Admin tanlang</label>
+            <select class="form-control" id="editAdminSelect" required>
+              <option value="">Admin tanlang</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="editSupplierSelect" class="form-label">Supplier tanlang</label>
+            <select class="form-control" id="editSupplierSelect" required>
+              <option value="">Supplier tanlang</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Saqlash</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 
