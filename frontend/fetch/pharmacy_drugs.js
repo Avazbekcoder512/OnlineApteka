@@ -110,9 +110,9 @@ function bindCreateForm() {
       return;
     }
 
-    const pharmacyId = document.getElementById("pharmacySelect").value;
-    if (!pharmacyId) {
-      alert("Iltimos, dorixonani tanlang.");
+    const pharmacyId = parseInt(document.getElementById("pharmacySelect").value);
+    if (isNaN(pharmacyId)) {
+      alert("Iltimos, dorixonani to'g'ri tanlang.");
       return;
     }
 
@@ -126,10 +126,13 @@ function bindCreateForm() {
     formData.append("one_plate", document.getElementById("sizeDisk").value);
     formData.append("one_box", document.getElementById("sizeBox").value);
     formData.append("made", document.getElementById("manufacturer").value.trim());
-    formData.append("pharmacyId", pharmacyId); // string ko‘rinishida
+    formData.append("pharmacyId", pharmacyId); 
 
     formData.append("image", imageInput.files[0]);
 
+    for (let pair of formData.entries()) {
+      console.log(pair[0]+ ': ' + pair[1]);
+    }
     fetch("http://localhost:7777/medicine/create", {
       method: "POST",
       headers: {
