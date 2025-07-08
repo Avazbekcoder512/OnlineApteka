@@ -208,8 +208,7 @@ function deleteAdmin(id) {
     cancelButtonText: "Bekor qilish",
   }).then((result) => {
     if (result.isConfirmed) {
-      const token = getCookie("token");
-
+      const token = localStorage.getItem("token");
       fetch(`http://localhost:7777/admin/${id}/delete`, {
         method: "DELETE",
         headers: {
