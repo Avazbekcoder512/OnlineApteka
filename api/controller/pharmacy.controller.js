@@ -106,7 +106,7 @@ const getOnePharmacy = async (req, res) => {
             });
         }
 
-        const pharmacy = await prisma.pharmacy.findFirst({ where: { id } })
+        const pharmacy = await prisma.pharmacy.findFirst({ where: { id }, include: { medicine: true } })
 
         if (!pharmacy) {
             return res.status(404).send({
