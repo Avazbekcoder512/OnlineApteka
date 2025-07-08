@@ -88,7 +88,7 @@ function fetchPharmacies() {
             <td>${ph.address}</td>
             <td>${ph.phone}</td>
             <td>
-              <a href="pharmacy_drugs.html?"><i class="fa fa-eye"></i></a>
+              <a href="pharmacy_drugs.html?pharmacyId=${ph.id}"><i class="fa fa-eye"></i></a>
               <a href="#" class="edit-btn" data-pharmacy="${encodedData}"><i class="fa fa-pen-to-square"></i></a>
               <a href="#" onclick='deletePharmacy(${ph.id})'><i class="fa fa-trash-can"></i></a>
             </td>

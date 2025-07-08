@@ -6,28 +6,45 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // 1. Load Pharmacies
-function loadPharmacies() {
-  const pharmacySelect = document.getElementById("pharmacySelect");
-  const token = localStorage.getItem("token");
+function loadPharmacies(pharmacyId) {
+  console.log("Kelayotgan pharmacyId:", pharmacyId);
 
-  if (!pharmacySelect) return;
+  const token = localStorage.getItem("token");
 
   fetch("http://localhost:7777/pharmacies", {
     method: "GET",
     headers: {
-      Authorization: `Bearer ${token}`,
+      'Authorization': `Bearer ${token}`,
     },
   })
     .then(res => res.json())
     .then(data => {
-      if (!Array.isArray(data.pharmacies)) throw new Error("Noto‘g‘ri javob");
+      console.log("Dorixonalar:", data);
 
-      data.pharmacies.forEach(pharmacy => {
-        const option = document.createElement("option");
-        option.value = pharmacy.id;
-        option.textContent = pharmacy.name;
-        pharmacySelect.appendChild(option);
-      });
+      const pharmacy = data.pharmacies.find(p => p.id === parseInt(pharmacyId));
+
+      if (!pharmacy) {
+        console.error("Dorixona topilmadi");
+        return;
+      }
+
+      const listDiv = document.getElementById("pharmacyList");
+      if (!listDiv) {
+        console.error("pharmacyList elementi topilmadi");
+        return;
+      }
+
+      listDiv.innerHTML = `
+        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
+          <h3>${pharmacy.name}</h3>
+          <p><strong>Manzil:</strong> ${pharmacy.address}</p>
+          <p><strong>Mo'ljal:</strong> ${pharmacy.destination}</p>
+          <p><strong>Telefon:</strong> ${pharmacy.phone}</p>
+          <p><strong>Joylashuv:</strong> <a href="${pharmacy.locationUrl}" target="_blank">Ko'rish</a></p>
+          <p><strong>Admin ID:</strong> ${pharmacy.adminId ?? "Noma'lum"}</p>
+          <p><strong>Taminotchi ID:</strong> ${pharmacy.supplierId ?? "Noma'lum"}</p>
+        </div>
+      `;
     })
     .catch(err => {
       console.error("Dorixonalarni olishda xatolik:", err);
@@ -38,9 +55,17 @@ function loadPharmacies() {
 // 2. Load Medicines
 function loadMedicines() {
   const tableBody = document.querySelector("table tbody");
+  const params = new URLSearchParams(window.location.search);
+  const pharmacyId = params.get("pharmacyId");
+
+  if(!pharmacyId) {
+    alert("Dorixona topilmadi")
+    return
+  }
+
   const token = localStorage.getItem("token");
 
-  fetch("http://localhost:7777/medicines", {
+  fetch(`http://localhost:7777/pharmacies/${pharmacyId}/drugs`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -48,31 +73,51 @@ function loadMedicines() {
   })
     .then(res => res.json())
     .then(data => {
+      console.log("Dorilar:", data);
       if (!Array.isArray(data.medicines)) throw new Error("Noto‘g‘ri format");
 
       tableBody.innerHTML = "";
-      data.medicines.forEach((med, index) => {
+
+      const medicines = data.medicines;
+
+      if(!Array.isArray(medicines)){
+        alert("Dorilarni yuklashda xatolik");
+        return;
+      }
+      medicines.forEach((med, index) => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-          <td>${index + 1}</td>
-          <td>${med.name.uz}</td>
-          <td><img src="${med.image}" width="50" /></td>
-          <td>${med.quantity}</td>
-          <td>${med.price.disk} / ${med.price.box}</td>
-          <td>${med.size.disk} / ${med.size.box}</td>
-          <td>${med.manufacturer}</td>
+        <td><img src="${med.image}" width="50" /></td>
+          <td>${med.uz_name}</td>
+          <td>${med.one_plate_price}</td>
+          <td>${med.warehouse}</td>
+          <td>${med.made}</td>
           <td>
+            <a href="#" 
+            onclick="openViewModal(this)"
+            data-id="${med.id}" 
+              data-image="${med.image}"
+              data-nameuz="${med.uz_name}" 
+              data-nameru="${med.ru_name}" 
+              data-nameen="${med.ru_name}"
+              data-pricedisk="${med.one_plate_price}" 
+              data-pricebox="${med.one_box}" 
+              data-sizedisk="${med.one_plate_price}" 
+              data-sizebox="${med.one_box_price}" 
+              data-manufacturer="${med.made}"
+              data-warehouse="${med.warehouse}"
+              >
+            <i class="fa fa-eye"></i></a>
             <a href="#" onclick="openEditModal(this)" 
               data-id="${med.id}" 
-              data-nameuz="${med.name.uz}" 
-              data-nameru="${med.name.ru}" 
-              data-nameen="${med.name.en}"
-              data-quantity="${med.quantity}" 
-              data-pricedisk="${med.price.disk}" 
-              data-pricebox="${med.price.box}" 
-              data-sizedisk="${med.size.disk}" 
-              data-sizebox="${med.size.box}" 
-              data-manufacturer="${med.manufacturer}"
+              data-nameuz="${med.uz_name}" 
+              data-nameru="${med.ru_name}" 
+              data-nameen="${med.ru_name}"
+              data-pricedisk="${med.one_plate_price}" 
+              data-pricebox="${med.one_box}" 
+              data-sizedisk="${med.one_plate_price}" 
+              data-sizebox="${med.one_box_price}" 
+              data-manufacturer="${med.made}"
               data-image="${med.image}">
               <i class="fa-solid fa-pen-to-square"></i>
             </a>
@@ -165,19 +210,27 @@ function bindCreateForm() {
 
 // 4. Edit Modal
 function openEditModal(el) {
-  document.getElementById("editId").value = el.dataset.id;
-  document.getElementById("editNameUz").value = el.dataset.nameuz;
-  document.getElementById("editNameRu").value = el.dataset.nameru;
-  document.getElementById("editNameEn").value = el.dataset.nameen;
-  document.getElementById("editQuantity").value = el.dataset.quantity;
-  document.getElementById("editPriceDisk").value = el.dataset.pricedisk;
-  document.getElementById("editPriceBox").value = el.dataset.pricebox;
-  document.getElementById("editSizeDisk").value = el.dataset.sizedisk;
-  document.getElementById("editSizeBox").value = el.dataset.sizebox;
-  document.getElementById("editManufacturer").value = el.dataset.manufacturer;
-  document.getElementById("editImageUrl").value = el.dataset.image;
+  document.getElementById("medId").value = el.dataset.id;
+  document.getElementById("nameUz").value = el.dataset.nameuz;
+  document.getElementById("nameRu").value = el.dataset.nameru;
+  document.getElementById("nameEn").value = el.dataset.nameen;
+  document.getElementById("quantity").value = el.dataset.quantity;
+  document.getElementById("priceDisk").value = el.dataset.pricedisk;
+  document.getElementById("priceBox").value = el.dataset.pricebox;
+  document.getElementById("sizeDisk").value = el.dataset.sizedisk;
+  document.getElementById("sizeBox").value = el.dataset.sizebox;
+  document.getElementById("manufacturer").value = el.dataset.manufacturer;
+  
+  const imagePreview = document.getElementById("imagePreview");
+  if (el.dataset.image) {
+    imagePreview.src = el.dataset.image;
+    imagePreview.style.display = "block";
+  } else {
+    imagePreview.src = ""
+    imagePreview.style.display = "none";
+  }
 
-  document.getElementById("editMedicineModal").style.display = "block";
+  document.getElementById("editModal").style.display = "block";
 }
 
 function closeEditModal() {
@@ -197,26 +250,25 @@ function bindEditForm() {
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const id = document.getElementById("editId").value;
+    const id = document.getElementById("medId").value;
     const token = localStorage.getItem("token");
 
     const updated = {
       name: {
-        uz: document.getElementById("editNameUz").value,
-        ru: document.getElementById("editNameRu").value,
-        en: document.getElementById("editNameEn").value,
+        uz: document.getElementById("nameUz").value,
+        ru: document.getElementById("nameRu").value,
+        en: document.getElementById("nameEn").value,
       },
-      quantity: +document.getElementById("editQuantity").value,
+      quantity: +document.getElementById("quantity").value,
       price: {
-        disk: +document.getElementById("editPriceDisk").value,
-        box: +document.getElementById("editPriceBox").value,
+        disk: +document.getElementById("priceDisk").value,
+        box: +document.getElementById("priceBox").value,
       },
       size: {
-        disk: document.getElementById("editSizeDisk").value,
-        box: document.getElementById("editSizeBox").value,
+        disk: document.getElementById("sizeDisk").value,
+        box: document.getElementById("sizeBox").value,
       },
-      manufacturer: document.getElementById("editManufacturer").value,
-      image: document.getElementById("editImageUrl").value,
+      manufacturer: document.getElementById("manufacturer").value,
     };
 
     fetch(`http://localhost:7777/medicine/${id}/update`, {
@@ -278,4 +330,35 @@ function deleteMedicine(id) {
         });
     }
   });
+}
+
+// 7. View Modal
+function openViewModal(el) {
+  console.log("DATASET:", el.dataset);
+
+  document.getElementById("viewImage").src = el.dataset.image || "no-image.png";
+  document.getElementById("viewNameUz").textContent = el.dataset.nameuz || "-";
+  document.getElementById("viewNameRu").textContent = el.dataset.nameru || "-";
+  document.getElementById("viewNameEn").textContent = el.dataset.nameen || "-";
+  document.getElementById("viewPriceDisk").textContent = el.dataset.pricedisk || "-";
+  document.getElementById("viewPriceBox").textContent = el.dataset.pricebox || "-";
+  document.getElementById("viewSizeDisk").textContent = el.dataset.sizedisk || "-";
+  document.getElementById("viewSizeBox").textContent = el.dataset.sizebox || "-";
+  document.getElementById("viewManufacturer").textContent = el.dataset.manufacturer || "-";
+  document.getElementById("viewWarehouse").textContent = el.dataset.warehouse || "-";
+
+  
+  document.getElementById("viewMedicineModal").style.display = "block";
+}
+
+function closeViewModal() {
+  document.getElementById("viewMedicineModal").style.display = "none";
+}
+
+window.onclick = function (e) {
+  const modalView = document.getElementById("viewMedicineModal");
+  if (e.target === modalView) closeViewModal();
+
+  const modalEdit = document.getElementById("editMedicineModal");
+  if (e.target === modalEdit) closeEditModal();
 }
