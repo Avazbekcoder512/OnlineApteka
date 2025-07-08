@@ -18,7 +18,7 @@ bot.on("message", async msg => {
     const name = msg.from.username
 
     if (text === '/start') {
-        await bot.send(chatId, `Assalomu alaykum hurmatli @${name}, Botimizga xush kelibbsiz!`)
+        await bot.sendMessage(chatId, `Assalomu alaykum hurmatli @${name}, Botimizga xush kelibbsiz!`)
     }
 })
 
